@@ -19,14 +19,13 @@
       --bg: #f7f9fc;
       --surface: #ffffff;
       --surface-soft: #f1f5f9;
-      --surface-muted: #eef2f7;
       --heading: #07111f;
       --text: #334155;
       --muted: #64748b;
       --border: #e2e8f0;
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
-      --primary-soft: rgba(37, 99, 235, 0.10);
+      --primary-soft: rgba(37, 99, 235, 0.1);
       --dark-panel: #0f172a;
       --shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
       --card-shadow: 0 16px 44px rgba(15, 23, 42, 0.07);
@@ -36,11 +35,10 @@
       --bg: #020617;
       --surface: #0f172a;
       --surface-soft: #111827;
-      --surface-muted: #1e293b;
       --heading: #ffffff;
       --text: #cbd5e1;
       --muted: #94a3b8;
-      --border: rgba(148, 163, 184, 0.20);
+      --border: rgba(148, 163, 184, 0.2);
       --primary: #38bdf8;
       --primary-dark: #0ea5e9;
       --primary-soft: rgba(56, 189, 248, 0.12);
@@ -103,25 +101,23 @@
     }
 
     .brand-mark {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, #2563eb, #0ea5e9);
       color: #ffffff;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 950;
-      letter-spacing: -0.4px;
+      letter-spacing: -0.3px;
       box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
       flex: 0 0 auto;
     }
 
     .brand-copy {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
       min-width: 0;
+      line-height: 1.2;
     }
 
     .brand-copy strong {
@@ -129,13 +125,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .brand-copy span {
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
     }
 
     .nav-actions {
@@ -202,30 +191,6 @@
       grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
       align-items: center;
       gap: 58px;
-    }
-
-    .label {
-      width: fit-content;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 20px;
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--surface);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .label::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.14);
     }
 
     .hero h1 {
@@ -346,25 +311,6 @@
       object-fit: cover;
     }
 
-    .showcase-message {
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: 22px;
-      background: var(--dark-panel);
-      color: #ffffff;
-    }
-
-    .showcase-message strong {
-      display: block;
-      font-size: 15px;
-    }
-
-    .showcase-message p {
-      margin: 6px 0 0;
-      color: #cbd5e1;
-      font-size: 13.5px;
-    }
-
     .section {
       max-width: 1180px;
       margin: 0 auto;
@@ -406,11 +352,36 @@
     }
 
     .intro-card {
+      position: relative;
+      overflow: hidden;
       padding: 28px;
       border: 1px solid var(--border);
       border-radius: 24px;
       background: var(--surface);
       box-shadow: var(--card-shadow);
+    }
+
+    .intro-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    .intro-card span {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 950;
     }
 
     .intro-card h3 {
@@ -508,43 +479,46 @@
     }
 
     .app-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
       margin-top: auto;
     }
 
-    .store-btn,
-    .policy-btn {
-      min-height: 44px;
+    .store-btn {
+      min-height: 46px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 13px;
+      background: var(--primary);
+      color: #ffffff;
       text-decoration: none;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 950;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.2);
       transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .store-btn:hover,
-    .policy-btn:hover {
+    html[data-theme="dark"] .store-btn {
+      color: #020617;
+    }
+
+    .store-btn:hover {
+      background: var(--primary-dark);
       transform: translateY(-1px);
     }
 
-    .store-btn {
-      background: var(--heading);
-      color: var(--bg);
-    }
-
-    .policy-btn {
-      background: var(--surface-soft);
+    .policy-link {
+      width: fit-content;
       color: var(--primary);
-      border: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 850;
     }
 
-    .policy-btn:hover {
-      background: var(--surface);
+    .policy-link:hover {
+      text-decoration: underline;
     }
 
     .support-grid {
@@ -579,7 +553,7 @@
     }
 
     .support-main .btn-secondary {
-      background: rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
       border-color: rgba(255, 255, 255, 0.18);
     }
@@ -631,41 +605,79 @@
 
     .footer {
       border-top: 1px solid var(--border);
-      background: var(--surface);
+      background: linear-gradient(180deg, var(--surface), var(--bg));
     }
 
     .footer-inner {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 30px 22px;
+      padding: 46px 22px 24px;
+    }
+
+    .footer-main {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: center;
+      grid-template-columns: minmax(260px, 1.45fr) repeat(3, minmax(150px, 1fr));
+      gap: 34px;
+      align-items: start;
       color: var(--muted);
       font-size: 14px;
     }
 
     .footer-brand {
       color: var(--heading);
+      font-size: 18px;
       font-weight: 900;
+      letter-spacing: -0.35px;
+    }
+
+    .footer-summary {
+      max-width: 360px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .footer-column h3 {
+      margin: 0 0 12px;
+      color: var(--heading);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: flex-end;
+      display: grid;
+      gap: 9px;
     }
 
     .footer a {
-      color: var(--primary);
+      width: fit-content;
+      color: var(--muted);
       text-decoration: none;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 750;
     }
 
     .footer a:hover {
-      text-decoration: underline;
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .footer-bottom a {
+      color: var(--primary);
+      font-weight: 850;
     }
 
     @media (max-width: 980px) {
@@ -721,10 +733,6 @@
         grid-template-columns: 1fr;
       }
 
-      .app-actions {
-        grid-template-columns: 1fr;
-      }
-
       .showcase-grid {
         gap: 10px;
       }
@@ -733,19 +741,29 @@
         padding: 58px 18px;
       }
 
-      .footer-inner {
-        grid-template-columns: 1fr;
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .footer-links {
-        justify-content: flex-start;
+      .footer-intro {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .footer-main {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
-<body>
-
+<body id="top">
   <header class="topbar">
     <nav class="nav">
       <a class="brand" href="/">
@@ -753,7 +771,6 @@
 
         <div class="brand-copy">
           <strong>Infinity Platform Technologies</strong>
-          <span>Android apps for everyday use</span>
         </div>
       </a>
 
@@ -773,12 +790,9 @@
   </header>
 
   <main>
-
     <section class="hero">
       <div class="hero-inner">
         <div>
-          <div class="label">Published on Google Play</div>
-
           <h1>
             Simple Android apps built for <span>daily digital tasks.</span>
           </h1>
@@ -825,13 +839,6 @@
               <img src="/flash-alerts/icon-512.png" width="512" height="512" alt="Flash Alerts icon" />
             </div>
           </div>
-
-          <div class="showcase-message">
-            <strong>Useful tools with a clean experience.</strong>
-            <p>
-              Each app page includes a Google Play link and a dedicated privacy policy link.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -839,31 +846,38 @@
     <section class="section">
       <div class="section-head">
         <div class="section-label">What We Build</div>
-        <h2>Focused Android apps for common mobile needs.</h2>
+        <h2>Practical apps built around clear user tasks.</h2>
         <p>
-          Every product is built around a clear purpose, simple interface, and practical daily use.
+          Each product is designed to solve one real mobile need with fast access,
+          simple controls, and a clean app experience.
         </p>
       </div>
 
       <div class="intro-grid">
         <div class="intro-card">
-          <h3>Utility Apps</h3>
+          <span>01</span>
+          <h3>Task-Focused Tools</h3>
           <p>
-            Tools for scanning, password creation, alerts, image compression, and other everyday actions.
+            Apps for QR scanning, status saving, password generation, image compression,
+            flash alerts, and clipboard management.
           </p>
         </div>
 
         <div class="intro-card">
-          <h3>Simple Workflows</h3>
+          <span>02</span>
+          <h3>Clean App Experience</h3>
           <p>
-            Clean screens, clear actions, and direct controls so users can complete tasks quickly.
+            Clear screens, direct actions, readable layouts, and lightweight performance
+            for everyday Android users.
           </p>
         </div>
 
         <div class="intro-card">
-          <h3>Mobile First</h3>
+          <span>03</span>
+          <h3>Easy to Download</h3>
           <p>
-            Apps and pages are designed to work clearly across Android devices and mobile browsers.
+            Product pages are built to help users quickly find the right app and open
+            its Google Play listing.
           </p>
         </div>
       </div>
@@ -875,12 +889,11 @@
           <div class="section-label">Apps</div>
           <h2>Download apps from Google Play.</h2>
           <p>
-            Choose an app below to open its Play Store listing or privacy policy page.
+            Explore the app collection and open each product directly on Google Play.
           </p>
         </div>
 
         <div class="apps-grid">
-
           <article class="app-card">
             <div class="app-header">
               <img class="app-icon" src="/qr-barcode-scanmaster/icon-512.png" width="512" height="512" alt="QR Barcode ScanMaster app icon" loading="lazy" />
@@ -896,8 +909,8 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.qrbarcodescanmaster.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/qr-barcode-scanmaster/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.qrbarcodescanmaster.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/qr-barcode-scanmaster/privacy-policy.html">Privacy details</a>
             </div>
           </article>
 
@@ -916,8 +929,8 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.securestatussaver.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/secure-status-saver/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.securestatussaver.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/secure-status-saver/privacy-policy.html">Privacy details</a>
             </div>
           </article>
 
@@ -936,8 +949,8 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.strongpasswordgenerator.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/strong-password-generator/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.strongpasswordgenerator.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/strong-password-generator/privacy-policy.html">Privacy details</a>
             </div>
           </article>
 
@@ -956,8 +969,8 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.clipboardhistorymanager.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/clipboard-history-manager/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.clipboardhistorymanager.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/clipboard-history-manager/privacy-policy.html">Privacy details</a>
             </div>
           </article>
 
@@ -976,8 +989,8 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.compressimage.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/compress-image/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.compressimage.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/compress-image/privacy-policy.html">Privacy details</a>
             </div>
           </article>
 
@@ -996,11 +1009,10 @@
             </p>
 
             <div class="app-actions">
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.flashalert.app" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a class="policy-btn" href="/flash-alerts/privacy-policy.html">Privacy Policy</a>
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.flashalert.app" target="_blank" rel="noopener noreferrer">View on Google Play</a>
+              <a class="policy-link" href="/flash-alerts/privacy-policy.html">Privacy details</a>
             </div>
           </article>
-
         </div>
       </div>
     </section>
@@ -1011,7 +1023,7 @@
           <h2>Need help with an app?</h2>
 
           <p>
-            For support, feedback, app questions, or privacy-related requests, contact us directly by email.
+            For support, feedback, or app questions, contact us directly by email.
           </p>
 
           <div class="hero-buttons">
@@ -1024,7 +1036,7 @@
           <h3>Quick Links</h3>
 
           <p>
-            Access app listings, support contact, and product information from one place.
+            Open the app collection, contact support, or return to the top of the page.
           </p>
 
           <div class="quick-links">
@@ -1046,20 +1058,52 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      <div>
-        <div class="footer-brand">Infinity Platform Technologies</div>
-        <div>© 2026. All rights reserved.</div>
+      <div class="footer-main">
+        <div class="footer-intro">
+          <div class="footer-brand">Infinity Platform Technologies</div>
+          <p class="footer-summary">
+            A growing collection of Android apps for scanning, saving, securing,
+            compressing, managing, and mobile productivity.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Apps</h3>
+          <div class="footer-links">
+            <a href="https://play.google.com/store/apps/details?id=com.qrbarcodescanmaster.app" target="_blank" rel="noopener noreferrer">QR Barcode ScanMaster</a>
+            <a href="https://play.google.com/store/apps/details?id=com.securestatussaver.app" target="_blank" rel="noopener noreferrer">Secure Status Saver</a>
+            <a href="https://play.google.com/store/apps/details?id=com.strongpasswordgenerator.app" target="_blank" rel="noopener noreferrer">Strong Password Generator</a>
+            <a href="https://play.google.com/store/apps/details?id=com.clipboardhistorymanager.app" target="_blank" rel="noopener noreferrer">Clipboard History Manager</a>
+            <a href="https://play.google.com/store/apps/details?id=com.compressimage.app" target="_blank" rel="noopener noreferrer">Compress Image</a>
+            <a href="https://play.google.com/store/apps/details?id=com.flashalert.app" target="_blank" rel="noopener noreferrer">Flash Alerts</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Navigate</h3>
+          <div class="footer-links">
+            <a href="#apps">All Apps</a>
+            <a href="#support">Support</a>
+            <a href="#top">Back to Top</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Support</h3>
+          <div class="footer-links">
+            <a href="mailto:infinityplatformtechnologies@gmail.com">Contact Email</a>
+            <a href="#support">App Support</a>
+          </div>
+        </div>
       </div>
 
-      <div class="footer-links">
-        <a href="#apps">Apps</a>
-        <a href="#support">Support</a>
-        <a href="mailto:infinityplatformtechnologies@gmail.com">Contact</a>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Infinity Platform Technologies. All rights reserved.</div>
+        <a href="mailto:infinityplatformtechnologies@gmail.com">infinityplatformtechnologies@gmail.com</a>
       </div>
     </div>
   </footer>
@@ -1095,6 +1139,5 @@
       applyTheme(nextTheme);
     });
   </script>
-
 </body>
 </html>
