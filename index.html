@@ -1,6 +1,5 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +8,7 @@
 
   <meta
     name="description"
-    content="Infinity Platform Technologies builds simple, fast, and privacy-focused Android apps for everyday digital tasks."
+    content="Infinity Platform Technologies builds simple, useful, and reliable Android apps for everyday digital tasks."
   />
 
   <meta name="robots" content="index, follow" />
@@ -17,17 +16,37 @@
 
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f7f9fc;
       --surface: #ffffff;
       --surface-soft: #f1f5f9;
-      --text: #0f172a;
+      --surface-muted: #eef2f7;
+      --heading: #07111f;
+      --text: #334155;
       --muted: #64748b;
       --border: #e2e8f0;
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
-      --success: #16a34a;
+      --primary-soft: rgba(37, 99, 235, 0.10);
+      --dark-panel: #0f172a;
       --shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
-      --radius: 24px;
+      --card-shadow: 0 16px 44px rgba(15, 23, 42, 0.07);
+    }
+
+    html[data-theme="dark"] {
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface-soft: #111827;
+      --surface-muted: #1e293b;
+      --heading: #ffffff;
+      --text: #cbd5e1;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.20);
+      --primary: #38bdf8;
+      --primary-dark: #0ea5e9;
+      --primary-soft: rgba(56, 189, 248, 0.12);
+      --dark-panel: #020617;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --card-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
     }
 
     * {
@@ -40,32 +59,34 @@
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
-        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 30%),
-        var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
     }
 
     a {
       color: inherit;
     }
 
-    .site-header {
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(248, 250, 252, 0.84);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 249, 252, 0.88);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    html[data-theme="dark"] .topbar {
+      background: rgba(2, 6, 23, 0.88);
     }
 
     .nav {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 16px 22px;
+      padding: 15px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -76,57 +97,67 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
       min-width: 0;
+      color: var(--heading);
+      text-decoration: none;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, #2563eb, #0ea5e9);
       color: #ffffff;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28);
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: -0.4px;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
       flex: 0 0 auto;
     }
 
-    .brand-text {
+    .brand-copy {
       display: flex;
       flex-direction: column;
       line-height: 1.2;
       min-width: 0;
     }
 
-    .brand-text strong {
+    .brand-copy strong {
       font-size: 15px;
-      letter-spacing: -0.2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .brand-text span {
-      font-size: 12px;
+    .brand-copy span {
+      margin-top: 2px;
       color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
     }
 
-    .nav-links {
+    .nav-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .nav-links a {
       padding: 10px 12px;
       border-radius: 999px;
-      color: #475569;
+      color: var(--muted);
       text-decoration: none;
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 750;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -134,42 +165,73 @@
       color: var(--primary);
     }
 
-    .hero {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 86px 22px 54px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 54px;
-    }
-
-    .eyebrow {
-      width: fit-content;
+    .theme-toggle {
+      height: 42px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
-      padding: 8px 13px;
-      border: 1px solid rgba(37, 99, 235, 0.16);
+      padding: 0 14px;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(37, 99, 235, 0.08);
-      color: var(--primary);
+      background: var(--surface);
+      color: var(--heading);
+      cursor: pointer;
+      font: inherit;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 850;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
     }
 
-    .eyebrow-dot {
+    .theme-toggle:hover {
+      background: var(--surface-soft);
+    }
+
+    .hero {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), transparent 30%),
+        linear-gradient(180deg, var(--surface), var(--bg));
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 92px 22px 88px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      align-items: center;
+      gap: 58px;
+    }
+
+    .label {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .label::before {
+      content: "";
       width: 8px;
       height: 8px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 0 5px rgba(22, 163, 74, 0.14);
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.14);
     }
 
     .hero h1 {
+      max-width: 780px;
       margin: 0;
-      max-width: 760px;
+      color: var(--heading);
       font-size: clamp(42px, 6vw, 72px);
       line-height: 0.98;
       letter-spacing: -3px;
@@ -186,7 +248,7 @@
       font-size: 18px;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -194,16 +256,16 @@
     }
 
     .btn {
-      min-height: 48px;
+      min-height: 50px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
+      gap: 9px;
+      padding: 13px 18px;
       border-radius: 14px;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
@@ -217,138 +279,157 @@
       box-shadow: 0 16px 34px rgba(37, 99, 235, 0.24);
     }
 
+    html[data-theme="dark"] .btn-primary {
+      color: #020617;
+    }
+
     .btn-primary:hover {
       background: var(--primary-dark);
     }
 
     .btn-secondary {
       background: var(--surface);
-      color: var(--text);
+      color: var(--heading);
       border: 1px solid var(--border);
     }
 
     .btn-secondary:hover {
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      background: var(--surface-soft);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
     }
 
-    .hero-panel {
-      position: relative;
-    }
-
-    .phone-card {
-      max-width: 430px;
-      margin-left: auto;
-      padding: 20px;
-      border: 1px solid rgba(226, 232, 240, 0.9);
+    .showcase {
+      padding: 24px;
+      border: 1px solid var(--border);
       border-radius: 34px;
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(20px);
+      background: var(--surface);
       box-shadow: var(--shadow);
     }
 
-    .phone-screen {
-      border-radius: 26px;
-      padding: 22px;
-      background:
-        linear-gradient(180deg, rgba(37, 99, 235, 0.12), transparent 45%),
-        #ffffff;
-      border: 1px solid var(--border);
-    }
-
-    .mini-title {
+    .showcase-head {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 18px;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 800;
     }
 
-    .mini-grid {
+    .showcase-head strong {
+      color: var(--heading);
+      font-size: 16px;
+    }
+
+    .showcase-head span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .showcase-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
 
-    .mini-app {
+    .showcase-item {
       aspect-ratio: 1;
-      border-radius: 22px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
       background: var(--surface-soft);
-      border: 1px solid var(--border);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
     }
 
-    .mini-app img {
-      width: 72%;
-      height: 72%;
-      object-fit: cover;
+    .showcase-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
       border-radius: 18px;
+      object-fit: cover;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 22px 58px;
+    .showcase-message {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--dark-panel);
+      color: #ffffff;
     }
 
-    .stat {
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.76);
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.05);
-    }
-
-    .stat strong {
+    .showcase-message strong {
       display: block;
-      font-size: 26px;
-      letter-spacing: -1px;
+      font-size: 15px;
     }
 
-    .stat span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 14px;
+    .showcase-message p {
+      margin: 6px 0 0;
+      color: #cbd5e1;
+      font-size: 13.5px;
     }
 
     .section {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 54px 22px;
+      padding: 76px 22px;
     }
 
     .section-head {
-      max-width: 720px;
-      margin-bottom: 30px;
+      max-width: 780px;
+      margin-bottom: 34px;
     }
 
-    .section-kicker {
-      margin-bottom: 8px;
+    .section-label {
+      margin-bottom: 9px;
       color: var(--primary);
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 950;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
     }
 
     .section-head h2 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.1;
-      letter-spacing: -1.5px;
+      color: var(--heading);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -1.6px;
     }
 
     .section-head p {
-      margin: 14px 0 0;
+      margin: 15px 0 0;
       color: var(--muted);
       font-size: 17px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .intro-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+    }
+
+    .intro-card h3 {
+      margin: 0 0 10px;
+      color: var(--heading);
+      font-size: 21px;
+      letter-spacing: -0.5px;
+    }
+
+    .intro-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .apps-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .apps-grid {
@@ -358,41 +439,31 @@
     }
 
     .app-card {
-      position: relative;
+      display: flex;
+      flex-direction: column;
       min-height: 100%;
       padding: 22px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 18px 55px rgba(15, 23, 42, 0.06);
-      overflow: hidden;
+      border-radius: 26px;
+      background: var(--bg);
+      box-shadow: var(--card-shadow);
       transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
 
-    .app-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 4px;
-      background: linear-gradient(90deg, #2563eb, #0ea5e9);
-      opacity: 0;
-      transition: opacity 0.22s ease;
+    html[data-theme="dark"] .app-card {
+      background: #0b1220;
     }
 
     .app-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(37, 99, 235, 0.26);
-      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.1);
-    }
-
-    .app-card:hover::before {
-      opacity: 1;
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
     }
 
     .app-header {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
       margin-bottom: 18px;
     }
 
@@ -412,7 +483,7 @@
 
     .app-info h3 {
       margin: 0;
-      color: var(--text);
+      color: var(--heading);
       font-size: 19px;
       line-height: 1.25;
       letter-spacing: -0.35px;
@@ -423,15 +494,15 @@
       margin-top: 7px;
       padding: 5px 9px;
       border-radius: 999px;
-      background: var(--surface-soft);
-      color: var(--muted);
+      background: var(--primary-soft);
+      color: var(--primary);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .app-card p {
-      min-height: 68px;
-      margin: 0 0 18px;
+      flex: 1;
+      margin: 0 0 20px;
       color: var(--muted);
       font-size: 14.5px;
     }
@@ -440,7 +511,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: auto;
     }
 
     .store-btn,
@@ -452,144 +523,145 @@
       border-radius: 13px;
       text-decoration: none;
       font-size: 13.5px;
-      font-weight: 900;
+      font-weight: 950;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .store-btn:hover,
+    .policy-btn:hover {
+      transform: translateY(-1px);
     }
 
     .store-btn {
-      background: #111827;
-      color: #ffffff;
-    }
-
-    .store-btn:hover {
-      background: #020617;
+      background: var(--heading);
+      color: var(--bg);
     }
 
     .policy-btn {
-      background: #ffffff;
+      background: var(--surface-soft);
       color: var(--primary);
       border: 1px solid var(--border);
     }
 
     .policy-btn:hover {
-      background: #eff6ff;
-      border-color: rgba(37, 99, 235, 0.25);
+      background: var(--surface);
     }
 
-    .feature-strip {
+    .support-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 26px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .feature {
-      padding: 22px;
-      border-radius: 22px;
-      background: #0f172a;
-      color: #ffffff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .feature::after {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      right: -50px;
-      top: -50px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.22);
-    }
-
-    .feature strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
-    }
-
-    .feature span {
-      color: #cbd5e1;
-      font-size: 14px;
-    }
-
-    .about-card {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      gap: 34px;
-      align-items: center;
+    .support-main {
       padding: 34px;
       border-radius: 30px;
-      background: #0f172a;
+      background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.24), transparent 34%),
+        #0f172a;
       color: #ffffff;
       box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
     }
 
-    .about-card::after {
-      content: "";
-      position: absolute;
-      right: -120px;
-      bottom: -120px;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.3);
-    }
-
-    .about-card h2 {
+    .support-main h2 {
       margin: 0;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.1;
-      letter-spacing: -1px;
+      color: #ffffff;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -1.3px;
     }
 
-    .about-card p {
+    .support-main p {
       margin: 16px 0 0;
       color: #cbd5e1;
       font-size: 16px;
     }
 
-    .about-list {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
+    .support-main .btn-secondary {
+      background: rgba(255, 255, 255, 0.10);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
-    .about-list div {
-      padding: 14px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.06);
-      color: #e2e8f0;
+    .links-panel {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+    }
+
+    .links-panel h3 {
+      margin: 0 0 10px;
+      color: var(--heading);
+      font-size: 24px;
+      letter-spacing: -0.6px;
+    }
+
+    .links-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--surface-soft);
+      color: var(--heading);
+      text-decoration: none;
       font-size: 14px;
-      font-weight: 750;
+      font-weight: 850;
+    }
+
+    .quick-links a:hover {
+      color: var(--primary);
+      border-color: var(--primary);
     }
 
     .footer {
-      margin-top: 50px;
       border-top: 1px solid var(--border);
-      background: #ffffff;
+      background: var(--surface);
     }
 
     .footer-inner {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 28px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 30px 22px;
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 18px;
+      align-items: center;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .footer-brand {
+      color: var(--heading);
+      font-weight: 900;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
     }
 
     .footer a {
       color: var(--primary);
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .footer a:hover {
@@ -597,22 +669,17 @@
     }
 
     @media (max-width: 980px) {
-      .hero {
+      .hero-inner,
+      .support-grid {
         grid-template-columns: 1fr;
-        padding-top: 58px;
       }
 
-      .phone-card {
-        margin: 0;
-        max-width: 100%;
+      .intro-grid {
+        grid-template-columns: 1fr;
       }
 
       .apps-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .about-card {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -622,18 +689,34 @@
         flex-direction: column;
       }
 
-      .nav-links {
+      .nav-actions {
         width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-links {
         overflow-x: auto;
-        padding-bottom: 4px;
+        white-space: nowrap;
+      }
+
+      .hero-inner {
+        padding-top: 54px;
+        padding-bottom: 62px;
+        gap: 36px;
       }
 
       .hero h1 {
         letter-spacing: -2px;
       }
 
-      .stats,
-      .feature-strip,
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
       .apps-grid {
         grid-template-columns: 1fr;
       }
@@ -642,9 +725,20 @@
         grid-template-columns: 1fr;
       }
 
+      .showcase-grid {
+        gap: 10px;
+      }
+
+      .section {
+        padding: 58px 18px;
+      }
+
       .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -652,21 +746,28 @@
 
 <body>
 
-  <header class="site-header">
+  <header class="topbar">
     <nav class="nav">
       <a class="brand" href="/">
-        <div class="brand-mark">IP</div>
-        <div class="brand-text">
+        <div class="brand-mark">IPT</div>
+
+        <div class="brand-copy">
           <strong>Infinity Platform Technologies</strong>
           <span>Android apps for everyday use</span>
         </div>
       </a>
 
-      <div class="nav-links">
-        <a href="#apps">Apps</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#about">About</a>
-        <a href="mailto:infinityplatformtechnologies@gmail.com">Contact</a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="#apps">Apps</a>
+          <a href="#support">Support</a>
+          <a href="mailto:infinityplatformtechnologies@gmail.com">Contact</a>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Dark</span>
+        </button>
       </div>
     </nav>
   </header>
@@ -674,356 +775,274 @@
   <main>
 
     <section class="hero">
-      <div>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Published Android Apps
-        </div>
-
-        <h1>
-          Useful Android apps built for <span>speed, simplicity, and privacy.</span>
-        </h1>
-
-        <p>
-          Infinity Platform Technologies creates lightweight mobile apps that help users scan codes,
-          save statuses, manage clipboard content, compress images, receive flash alerts, and use
-          practical digital tools without unnecessary complexity.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#apps">View Our Apps</a>
-          <a class="btn btn-secondary" href="mailto:infinityplatformtechnologies@gmail.com">Contact Developer</a>
-        </div>
-      </div>
-
-      <div class="hero-panel">
-        <div class="phone-card">
-          <div class="phone-screen">
-            <div class="mini-title">
-              <span>Infinity Apps</span>
-              <span>Google Play</span>
-            </div>
-
-            <div class="mini-grid">
-              <div class="mini-app">
-                <img src="/qr-barcode-scanmaster/icon-512.png" width="512" height="512" alt="QR Barcode ScanMaster icon" />
-              </div>
-
-              <div class="mini-app">
-                <img src="/secure-status-saver/icon-512.png" width="512" height="512" alt="Secure Status Saver icon" />
-              </div>
-
-              <div class="mini-app">
-                <img src="/strong-password-generator/icon-512.png" width="512" height="512" alt="Strong Password Generator icon" />
-              </div>
-
-              <div class="mini-app">
-                <img src="/clipboard-history-manager/icon-512.png" width="512" height="512" alt="Clipboard History Manager icon" />
-              </div>
-
-              <div class="mini-app">
-                <img src="/compress-image/icon-512.png" width="512" height="512" alt="Compress Image icon" />
-              </div>
-
-              <div class="mini-app">
-                <img src="/flash-alerts/icon-512.png" width="512" height="512" alt="Flash Alerts icon" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats">
-      <div class="stat">
-        <strong>6</strong>
-        <span>Android apps listed</span>
-      </div>
-
-      <div class="stat">
-        <strong>512×512</strong>
-        <span>Optimized app icon support</span>
-      </div>
-
-      <div class="stat">
-        <strong>Privacy</strong>
-        <span>Dedicated policy page for every app</span>
-      </div>
-    </section>
-
-    <section id="apps" class="section">
-      <div class="section-head">
-        <div class="section-kicker">Our Apps</div>
-        <h2>Download from Google Play or view each app privacy policy.</h2>
-        <p>
-          Every app card includes the app icon, app purpose, Google Play link, and direct privacy policy link.
-        </p>
-      </div>
-
-      <div class="apps-grid">
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/qr-barcode-scanmaster/icon-512.png"
-              width="512"
-              height="512"
-              alt="QR Barcode ScanMaster app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>QR Barcode ScanMaster</h3>
-              <span>QR & Barcode Scanner</span>
-            </div>
-          </div>
-
-          <p>
-            Scan QR codes and barcodes quickly with a clean and simple scanner experience.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.qrbarcodescanmaster.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/qr-barcode-scanmaster/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/secure-status-saver/icon-512.png"
-              width="512"
-              height="512"
-              alt="Secure Status Saver app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>Secure Status Saver</h3>
-              <span>Status Saver</span>
-            </div>
-          </div>
-
-          <p>
-            Save, view, and manage image and video statuses in a simple organized app.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.securestatussaver.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/secure-status-saver/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/strong-password-generator/icon-512.png"
-              width="512"
-              height="512"
-              alt="Strong Password Generator app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>Strong Password Generator</h3>
-              <span>Password Tool</span>
-            </div>
-          </div>
-
-          <p>
-            Generate strong and random passwords instantly for safer account protection.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.strongpasswordgenerator.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/strong-password-generator/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/clipboard-history-manager/icon-512.png"
-              width="512"
-              height="512"
-              alt="Clipboard History Manager app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>Clipboard History Manager</h3>
-              <span>Clipboard Tool</span>
-            </div>
-          </div>
-
-          <p>
-            Manage copied text and clipboard history with a focused and easy-to-use interface.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.clipboardhistorymanager.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/clipboard-history-manager/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/compress-image/icon-512.png"
-              width="512"
-              height="512"
-              alt="Compress Image app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>Compress Image</h3>
-              <span>Image Compressor</span>
-            </div>
-          </div>
-
-          <p>
-            Compress photos, reduce image size, and save storage while keeping the process simple.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.compressimage.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/compress-image/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-header">
-            <img
-              class="app-icon"
-              src="/flash-alerts/icon-512.png"
-              width="512"
-              height="512"
-              alt="Flash Alerts app icon"
-              loading="lazy"
-            />
-
-            <div class="app-info">
-              <h3>Flash Alerts</h3>
-              <span>Flash Notifications</span>
-            </div>
-          </div>
-
-          <p>
-            Get flashlight alerts for calls, SMS, and app notifications with simple controls.
-          </p>
-
-          <div class="app-actions">
-            <a
-              class="store-btn"
-              href="https://play.google.com/store/apps/details?id=com.flashalert.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Play
-            </a>
-
-            <a class="policy-btn" href="/flash-alerts/privacy-policy.html">
-              Privacy Policy
-            </a>
-          </div>
-        </article>
-
-      </div>
-
-      <div id="privacy" class="feature-strip">
-        <div class="feature">
-          <strong>Clear privacy pages</strong>
-          <span>Each app has a separate privacy policy page for better transparency.</span>
-        </div>
-
-        <div class="feature">
-          <strong>Lightweight apps</strong>
-          <span>Built for practical daily use without unnecessary complicated features.</span>
-        </div>
-
-        <div class="feature">
-          <strong>Android focused</strong>
-          <span>Designed and published for Android users through Google Play.</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="about-card">
+      <div class="hero-inner">
         <div>
-          <h2>Built by Infinity Platform Technologies.</h2>
+          <div class="label">Published on Google Play</div>
+
+          <h1>
+            Simple Android apps built for <span>daily digital tasks.</span>
+          </h1>
+
           <p>
-            We create focused Android applications for common digital needs. Our goal is to keep
-            every product clean, useful, fast, and easy for users to understand.
+            Explore a growing collection of lightweight Android apps designed for scanning,
+            saving, securing, compressing, managing, and simplifying everyday mobile tasks.
           </p>
 
-          <div class="hero-actions">
+          <div class="hero-buttons">
             <a class="btn btn-primary" href="#apps">Explore Apps</a>
-            <a class="btn btn-secondary" href="mailto:infinityplatformtechnologies@gmail.com">Email Us</a>
+            <a class="btn btn-secondary" href="#support">Get Support</a>
           </div>
         </div>
 
-        <div class="about-list">
-          <div>Simple app experiences</div>
-          <div>Dedicated privacy policy links</div>
-          <div>Fast loading landing page</div>
-          <div>Responsive design for mobile and desktop</div>
+        <div class="showcase">
+          <div class="showcase-head">
+            <strong>Featured Apps</strong>
+            <span>Android</span>
+          </div>
+
+          <div class="showcase-grid">
+            <div class="showcase-item">
+              <img src="/qr-barcode-scanmaster/icon-512.png" width="512" height="512" alt="QR Barcode ScanMaster icon" />
+            </div>
+
+            <div class="showcase-item">
+              <img src="/secure-status-saver/icon-512.png" width="512" height="512" alt="Secure Status Saver icon" />
+            </div>
+
+            <div class="showcase-item">
+              <img src="/strong-password-generator/icon-512.png" width="512" height="512" alt="Strong Password Generator icon" />
+            </div>
+
+            <div class="showcase-item">
+              <img src="/clipboard-history-manager/icon-512.png" width="512" height="512" alt="Clipboard History Manager icon" />
+            </div>
+
+            <div class="showcase-item">
+              <img src="/compress-image/icon-512.png" width="512" height="512" alt="Compress Image icon" />
+            </div>
+
+            <div class="showcase-item">
+              <img src="/flash-alerts/icon-512.png" width="512" height="512" alt="Flash Alerts icon" />
+            </div>
+          </div>
+
+          <div class="showcase-message">
+            <strong>Useful tools with a clean experience.</strong>
+            <p>
+              Each app page includes a Google Play link and a dedicated privacy policy link.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="section-label">What We Build</div>
+        <h2>Focused Android apps for common mobile needs.</h2>
+        <p>
+          Every product is built around a clear purpose, simple interface, and practical daily use.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-card">
+          <h3>Utility Apps</h3>
+          <p>
+            Tools for scanning, password creation, alerts, image compression, and other everyday actions.
+          </p>
+        </div>
+
+        <div class="intro-card">
+          <h3>Simple Workflows</h3>
+          <p>
+            Clean screens, clear actions, and direct controls so users can complete tasks quickly.
+          </p>
+        </div>
+
+        <div class="intro-card">
+          <h3>Mobile First</h3>
+          <p>
+            Apps and pages are designed to work clearly across Android devices and mobile browsers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps" class="apps-wrap">
+      <div class="section">
+        <div class="section-head">
+          <div class="section-label">Apps</div>
+          <h2>Download apps from Google Play.</h2>
+          <p>
+            Choose an app below to open its Play Store listing or privacy policy page.
+          </p>
+        </div>
+
+        <div class="apps-grid">
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/qr-barcode-scanmaster/icon-512.png" width="512" height="512" alt="QR Barcode ScanMaster app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>QR Barcode ScanMaster</h3>
+                <span>QR & Barcode Scanner</span>
+              </div>
+            </div>
+
+            <p>
+              Scan QR codes and barcodes quickly with a clean and simple scanner experience.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.qrbarcodescanmaster.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/qr-barcode-scanmaster/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/secure-status-saver/icon-512.png" width="512" height="512" alt="Secure Status Saver app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>Secure Status Saver</h3>
+                <span>Status Saver</span>
+              </div>
+            </div>
+
+            <p>
+              Save, view, and manage image and video statuses in one organized mobile app.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.securestatussaver.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/secure-status-saver/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/strong-password-generator/icon-512.png" width="512" height="512" alt="Strong Password Generator app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>Strong Password Generator</h3>
+                <span>Password Tool</span>
+              </div>
+            </div>
+
+            <p>
+              Create strong and random passwords instantly for safer account protection.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.strongpasswordgenerator.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/strong-password-generator/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/clipboard-history-manager/icon-512.png" width="512" height="512" alt="Clipboard History Manager app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>Clipboard History Manager</h3>
+                <span>Clipboard Tool</span>
+              </div>
+            </div>
+
+            <p>
+              Manage copied text and clipboard history with a focused and easy-to-use interface.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.clipboardhistorymanager.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/clipboard-history-manager/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/compress-image/icon-512.png" width="512" height="512" alt="Compress Image app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>Compress Image</h3>
+                <span>Image Compressor</span>
+              </div>
+            </div>
+
+            <p>
+              Compress photos, reduce image file size, and save storage with a simple workflow.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.compressimage.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/compress-image/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-header">
+              <img class="app-icon" src="/flash-alerts/icon-512.png" width="512" height="512" alt="Flash Alerts app icon" loading="lazy" />
+
+              <div class="app-info">
+                <h3>Flash Alerts</h3>
+                <span>Flash Notifications</span>
+              </div>
+            </div>
+
+            <p>
+              Get flashlight alerts for calls, SMS, and app notifications with simple controls.
+            </p>
+
+            <div class="app-actions">
+              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.flashalert.app" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="policy-btn" href="/flash-alerts/privacy-policy.html">Privacy Policy</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="support" class="section">
+      <div class="support-grid">
+        <div class="support-main">
+          <h2>Need help with an app?</h2>
+
+          <p>
+            For support, feedback, app questions, or privacy-related requests, contact us directly by email.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="mailto:infinityplatformtechnologies@gmail.com">Email Support</a>
+            <a class="btn btn-secondary" href="#apps">View Apps</a>
+          </div>
+        </div>
+
+        <div class="links-panel">
+          <h3>Quick Links</h3>
+
+          <p>
+            Access app listings, support contact, and product information from one place.
+          </p>
+
+          <div class="quick-links">
+            <a href="#apps">
+              <span>All Apps</span>
+              <span>→</span>
+            </a>
+
+            <a href="mailto:infinityplatformtechnologies@gmail.com">
+              <span>Support Email</span>
+              <span>→</span>
+            </a>
+
+            <a href="#top">
+              <span>Back to Top</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -1033,18 +1052,49 @@
   <footer class="footer">
     <div class="footer-inner">
       <div>
-        © 2026 Infinity Platform Technologies. All rights reserved.
+        <div class="footer-brand">Infinity Platform Technologies</div>
+        <div>© 2026. All rights reserved.</div>
       </div>
 
-      <div>
-        Contact:
-        <a href="mailto:infinityplatformtechnologies@gmail.com">
-          infinityplatformtechnologies@gmail.com
-        </a>
+      <div class="footer-links">
+        <a href="#apps">Apps</a>
+        <a href="#support">Support</a>
+        <a href="mailto:infinityplatformtechnologies@gmail.com">Contact</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    const root = document.documentElement;
+    const toggleButton = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+
+    const savedTheme = localStorage.getItem("site-theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("site-theme", theme);
+
+      if (theme === "dark") {
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Light";
+      } else {
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Dark";
+      }
+    }
+
+    applyTheme(initialTheme);
+
+    toggleButton.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+    });
+  </script>
+
 </body>
 </html>
-```
