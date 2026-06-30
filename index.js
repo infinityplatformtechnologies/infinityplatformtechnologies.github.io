@@ -44,7 +44,7 @@ const APP_CATALOG = [
         type: "Flash Notifications",
         description: "Get flashlight alerts for calls, SMS, and app notifications with simple controls.",
         icon: "/flash-alerts/app-icon.png",
-        storeUrl: "https://play.google.com/store/apps/details?id=com.flashalert.app",
+        storeUrl: "https://play.google.com/store/apps/details?id=com.flashalertss.app",
         privacyUrl: "/flash-alerts/privacy-policy.html"
       }
     ]
