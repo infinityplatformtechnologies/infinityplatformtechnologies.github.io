@@ -46,6 +46,22 @@ const APP_CATALOG = [
         icon: "/flash-alerts/app-icon.png",
         storeUrl: "https://play.google.com/store/apps/details?id=com.flashalertss.app",
         privacyUrl: "/flash-alerts/privacy-policy.html"
+      },
+      {
+        name: "Calculator Lock - Hide Photos",
+        type: "Privacy & File Vault",
+        description: "Hide photos, videos, and files securely behind a fully functional calculator.",
+        icon: "/calculator-lock/app-icon.png",
+        storeUrl: "https://play.google.com/store/apps/details?id=com.calculatorlock.hidephotos.app",
+        privacyUrl: "/calculator-lock/privacy-policy.html"
+      },
+      {
+        name: "App Lock - Lock Apps, Password",
+        type: "App Lock",
+        description: "Protect selected Android apps with a private pattern, PIN, or fingerprint unlock.",
+        icon: "/app-lock/app-icon.png",
+        storeUrl: "https://play.google.com/store/apps/details?id=com.applock.lockappspassword.app",
+        privacyUrl: "/app-lock/privacy-policy.html"
       }
     ]
   }
