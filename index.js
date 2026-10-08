@@ -48,7 +48,7 @@ const APP_CATALOG = [
         privacyUrl: "/flash-alerts/privacy-policy.html"
       },
       {
-        name: "Calculator Lock - Hide Photos",
+        name: "Calculator Lock",
         type: "Privacy & File Vault",
         description: "Hide photos, videos, and files securely behind a fully functional calculator.",
         icon: "/calculator-lock/app-icon.png",
@@ -56,7 +56,7 @@ const APP_CATALOG = [
         privacyUrl: "/calculator-lock/privacy-policy.html"
       },
       {
-        name: "App Lock - Lock Apps, Password",
+        name: "App Lock",
         type: "App Lock",
         description: "Protect selected Android apps with a private pattern, PIN, or fingerprint unlock.",
         icon: "/app-lock/app-icon.png",
